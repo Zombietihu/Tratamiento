@@ -30,6 +30,9 @@ import javax.swing.JPanel;
  */
 public class Imagen extends JPanel{
       BufferedImage bmp=null;
+      String nombre, ruta, alto, ancho;
+      long peso;
+      
     public Imagen(int alto, int ancho){
         this.setSize(alto,ancho );
         this.setVisible( true );
@@ -62,7 +65,7 @@ public class Imagen extends JPanel{
                 File imagenSeleccionada= new File("/home/cuatito/NetBeansProjects/TratamientoDeImagenes/cuadrito.jpg");
                 System.out.println(imagenSeleccionada.getPath());
                 System.out.println(imagenSeleccionada.getName());
-                System.out.println((int)imagenSeleccionada.getTotalSpace());
+                System.out.println(imagenSeleccionada.length());
                
                 this.bmp = ImageIO.read(imagenSeleccionada);
             } catch (Exception e) {
