@@ -17,6 +17,7 @@ public class TratamientoDeImagenes {
     public static void main(String[] args) {
         // TODO code application logic here
         Programa1 p = new Programa1();
+        //Metadatos l = new Metadatos();
     }
     
 }
