@@ -30,8 +30,12 @@ import javax.swing.JPanel;
  */
 public class Imagen extends JPanel{
       BufferedImage bmp=null;
-      String nombre, ruta, alto, ancho;
-      long peso;
+      private String nombre;
+      private String ruta;
+      private int alto;
+      private int ancho;
+      private long peso;
+      private Date dat;
       
     public Imagen(int alto, int ancho){
         this.setSize(alto,ancho );
@@ -63,11 +67,14 @@ public class Imagen extends JPanel{
         try {
                 
                 File imagenSeleccionada= new File("/home/cuatito/NetBeansProjects/TratamientoDeImagenes/cuadrito.jpg");
-                System.out.println(imagenSeleccionada.getPath());
-                System.out.println(imagenSeleccionada.getName());
-                System.out.println(imagenSeleccionada.length());
-               
+                this.ruta = imagenSeleccionada.getPath();
+                this.nombre=imagenSeleccionada.getName();
+                this.peso = imagenSeleccionada.length();
+                dat = new Date(imagenSeleccionada.lastModified());
                 this.bmp = ImageIO.read(imagenSeleccionada);
+                this.alto=bmp.getHeight();
+                this.ancho=bmp.getWidth();
+                //System.out.println(bmp.);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error al abrir la imagen");
             }
@@ -80,7 +87,44 @@ public class Imagen extends JPanel{
         ImageIcon Img = new ImageIcon(bmp); 
         g.drawImage(Img.getImage(), 0, 0, height.width, height.height, this);
 }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @return the ruta
+     */
+    public String getRuta() {
+        return ruta;
+    }
+
+    /**
+     * @return the alto
+     */
+    public int getAlto() {
+        return alto;
+    }
+
+    /**
+     * @return the ancho
+     */
+    public int getAncho() {
+        return ancho;
+    }
+
+    /**
+     * @return the peso
+     */
+    public float getPeso() {
+        return (float) (peso/1024);
+    }
     
-    
+    public Date getDat(){
+        return dat;
+    }
     
 }
