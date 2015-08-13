@@ -5,6 +5,7 @@
  */
 package tratamientodeimagenes;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,9 +38,12 @@ public class Programa1 extends JFrame {
     
     JButton crearCuadrado;
     JButton nuevoCuadrado;
+    JButton histogramaB;
     
     JPanel d_leftPanel;
     JPanel d_rightPanel;
+    JPanel histograma ;
+    JTabbedPane pestañas=new JTabbedPane();
     
     boolean validacion;
     
@@ -50,6 +54,7 @@ public class Programa1 extends JFrame {
     int j;
     
     Imagen cuadro;
+    Histograma  h = new Histograma();;
     public Programa1(){
         inicializar();
         this.setSize(1024, 760);
@@ -63,7 +68,7 @@ public class Programa1 extends JFrame {
         initLeftPanel();
         pane.setLeftComponent(d_leftPanel);
         initRightPanel();
-        pane.setRightComponent(d_rightPanel);       
+        pane.setRightComponent(pestañas);   //cmbiepestañas    
         pane.setContinuousLayout(true);
         pane.setDividerLocation(250);       
         pane.setEnabled(true);
@@ -123,7 +128,15 @@ public class Programa1 extends JFrame {
        fecha.setBounds(20, 320, 100, 20);
        fechaT = new JLabel();
        fechaT.setBounds(120, 320, 300, 20);
+       histogramaB = new JButton("Histograma");
+       histogramaB.setBounds(20, 350, 150, 20);
+       histogramaB.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+               creaHistograma();
+            }
+        });  
        
+       d_leftPanel.add(histogramaB);
        d_leftPanel.add(ancho);
        d_leftPanel.add(alto);
        d_leftPanel.add(anchoText);
@@ -149,6 +162,11 @@ public class Programa1 extends JFrame {
        d_rightPanel = new JPanel();
        d_rightPanel.setLayout(null);
        d_rightPanel.setBackground(java.awt.Color.white);
+       pestañas.addTab("Imagen", d_rightPanel);
+       histograma = new JPanel();
+       histograma.setLayout(null);
+       histograma.setBackground(java.awt.Color.white);
+       pestañas.addTab("Histograma", histograma);
     }
     public void nuevo(){
         anchoText.enable(true);
@@ -173,6 +191,9 @@ public class Programa1 extends JFrame {
             datosImagen();
             
            
+            
+            
+           
         }else{
             JOptionPane.showMessageDialog(null, "Error, solo se aceptan numeros enteros");
         }
@@ -187,6 +208,11 @@ public class Programa1 extends JFrame {
         fechaT.setText(cuadro.getDat() + "");      
         
     }
+    
+    public void creaHistograma(){
+        cuadro.histogramaImagen(histograma);
+    }
+    
     private  boolean isNumeric(String cadena1, String cadena2){
 	try {
 		i= Integer.parseInt(cadena1);

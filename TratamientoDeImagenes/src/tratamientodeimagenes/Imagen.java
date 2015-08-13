@@ -30,18 +30,19 @@ import javax.swing.JPanel;
  */
 public class Imagen extends JPanel{
       BufferedImage bmp=null;
+      BufferedImage cuadrito;
       private String nombre;
       private String ruta;
       private int alto;
       private int ancho;
       private long peso;
       private Date dat;
-      
+      Histograma h = new Histograma();
     public Imagen(int alto, int ancho){
         this.setSize(alto,ancho );
         this.setVisible( true );
         int valor;
-        BufferedImage cuadrito = new BufferedImage(alto, ancho, BufferedImage.TYPE_INT_RGB);
+        cuadrito = new BufferedImage(alto, ancho, BufferedImage.TYPE_INT_RGB);
        
         
         for(int i = 0; i< alto; i++){
@@ -79,6 +80,25 @@ public class Imagen extends JPanel{
                 JOptionPane.showMessageDialog(null, "Error al abrir la imagen");
             }
        
+    }
+    
+    public void histogramaImagen(JPanel JPanel_Gris){
+         try{  
+             System.out.println("Entre1");
+           int[][] histograma =h.histograma((BufferedImage)cuadrito);
+         
+            //extraemos un canal del histograma 
+            int[] histogramaCanal=new int[256];
+            System.arraycopy(histograma[0], 0, histogramaCanal, 0, histograma[0].length);
+            //Dibujamos en el panel
+            
+            h.crearHistograma(histogramaCanal, JPanel_Gris, Color.gray);
+             
+        
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "No se pudo cargar la imagen", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }
     
     public void paint(Graphics g) {
