@@ -81,10 +81,10 @@ public class Imagen extends JPanel{
             }
        
     }
-    
+   
     public void histogramaImagen(JPanel JPanel_Gris){
          try{  
-             System.out.println("Entre1");
+             //System.out.println("Entre1");
            int[][] histograma =h.histograma((BufferedImage)cuadrito);
          
             //extraemos un canal del histograma 

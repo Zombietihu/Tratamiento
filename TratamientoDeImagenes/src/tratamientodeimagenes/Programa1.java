@@ -39,10 +39,12 @@ public class Programa1 extends JFrame {
     JButton crearCuadrado;
     JButton nuevoCuadrado;
     JButton histogramaB;
+    JButton bin;
     
     JPanel d_leftPanel;
     JPanel d_rightPanel;
     JPanel histograma ;
+    JPanel binarizar;
     JTabbedPane pestañas=new JTabbedPane();
     
     boolean validacion;
@@ -54,7 +56,8 @@ public class Programa1 extends JFrame {
     int j;
     
     Imagen cuadro;
-    Histograma  h = new Histograma();;
+    Histograma  h = new Histograma();
+    Binarizar cuadroB;
     public Programa1(){
         inicializar();
         this.setSize(1024, 760);
@@ -129,13 +132,21 @@ public class Programa1 extends JFrame {
        fechaT = new JLabel();
        fechaT.setBounds(120, 320, 300, 20);
        histogramaB = new JButton("Histograma");
-       histogramaB.setBounds(20, 350, 150, 20);
+       histogramaB.setBounds(10, 350, 150, 20);
        histogramaB.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                creaHistograma();
             }
         });  
+       bin = new JButton("Binariza");
+       bin.setBounds(160, 350, 150, 20);
+       bin.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+              binarizar();
+            }
+        }); 
        
+       d_leftPanel.add(bin);
        d_leftPanel.add(histogramaB);
        d_leftPanel.add(ancho);
        d_leftPanel.add(alto);
@@ -167,6 +178,9 @@ public class Programa1 extends JFrame {
        histograma.setLayout(null);
        histograma.setBackground(java.awt.Color.white);
        pestañas.addTab("Histograma", histograma);
+       binarizar = new JPanel();
+       binarizar.setLayout(null);
+       pestañas.addTab("Binarizar", binarizar);
     }
     public void nuevo(){
         anchoText.enable(true);
@@ -197,6 +211,14 @@ public class Programa1 extends JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Error, solo se aceptan numeros enteros");
         }
+    }
+    
+    public void binarizar(){
+        System.out.println("Entre a accion");
+        cuadroB = new Binarizar();
+        binarizar.removeAll();
+        binarizar.add(cuadroB);
+        binarizar.repaint();
     }
     
     public void datosImagen(){

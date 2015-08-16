@@ -23,22 +23,21 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class Histograma {
     
    
-    int w;
-    int h;
+   
     
     private int calcularMedia(Color color){
         int mediaColor;
         mediaColor=(int)((color.getRed()+color.getGreen()+color.getBlue())/3);
-        System.out.println(mediaColor);
+      //  System.out.println(mediaColor);
         return mediaColor;
     }
     
      public int[][] histograma(BufferedImage imagen){
         Color colorAuxiliar;
        int histogramaReturn[][]=new int[1][256];
-      System.out.println("Entre2");
+      //System.out.println("Entre2");
         for( int i = 0; i < imagen.getWidth(); i++ ){
-            System.out.println("Entre :D");
+         //   System.out.println("Entre :D");
             for( int j = 0; j < imagen.getHeight(); j++ ){
                 
                 //Obtenemos color del píxel actual
