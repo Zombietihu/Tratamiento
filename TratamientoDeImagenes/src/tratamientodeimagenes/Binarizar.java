@@ -32,6 +32,8 @@ public class Binarizar extends JPanel{
     }
     
     public Binarizar(){
+       
+        this.setVisible( true );
         System.out.println("Entre a Binarizar");
         try{
             File imagenSeleccionada= new File("/home/cuatito/NetBeansProjects/TratamientoDeImagenes/cuadrito.jpg");
@@ -52,6 +54,7 @@ public class Binarizar extends JPanel{
                 
             }
         }
+             this.setSize(bmp.getWidth(),bmp.getHeight() );
              File file = new File("cuadritoB.jpg");
             ImageIO.write(cuadritoB, "jpg", file);
     
