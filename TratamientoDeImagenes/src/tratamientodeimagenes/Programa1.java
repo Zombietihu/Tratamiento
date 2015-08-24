@@ -40,6 +40,7 @@ public class Programa1 extends JFrame {
     JButton nuevoCuadrado;
     JButton histogramaB;
     JButton bin;
+    JButton ecualiza;
     
     JPanel d_leftPanel;
     JPanel d_rightPanel;
@@ -145,7 +146,15 @@ public class Programa1 extends JFrame {
               binarizar();
             }
         }); 
+       ecualiza = new JButton("Ecualizar");
+       ecualiza.setBounds(75, 380, 150, 20);
+       ecualiza.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+              ecualizar();
+            }
+        }); 
        
+       d_leftPanel.add(ecualiza);
        d_leftPanel.add(bin);
        d_leftPanel.add(histogramaB);
        d_leftPanel.add(ancho);
@@ -233,6 +242,10 @@ public class Programa1 extends JFrame {
     
     public void creaHistograma(){
         cuadro.histogramaImagen(histograma);
+    }
+    
+    public void ecualizar(){
+        Ecualizacion de = new Ecualizacion();
     }
     
     private  boolean isNumeric(String cadena1, String cadena2){
