@@ -9,6 +9,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -56,7 +59,7 @@ public class Programa1 extends JFrame {
     int i;
     int j;
     
-    Imagen cuadro;
+    Imagen cuadro = new Imagen();
     Histograma  h = new Histograma();
     Binarizar cuadroB;
     public Programa1(){
@@ -150,7 +153,11 @@ public class Programa1 extends JFrame {
        ecualiza.setBounds(75, 380, 150, 20);
        ecualiza.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-              ecualizar();
+                try {
+                    ecualizar();
+                } catch (IOException ex) {
+                    Logger.getLogger(Programa1.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }); 
        
@@ -207,7 +214,7 @@ public class Programa1 extends JFrame {
             altoText.enable(false);
             crearCuadrado.disable();
             nuevoCuadrado.enable(true);
-            cuadro = new Imagen(j, i);
+            cuadro.Imagen(j, i);
             d_rightPanel.removeAll();
             d_rightPanel.add(cuadro);
             d_rightPanel.repaint();
@@ -244,7 +251,7 @@ public class Programa1 extends JFrame {
         cuadro.histogramaImagen(histograma);
     }
     
-    public void ecualizar(){
+    public void ecualizar() throws IOException{
         Ecualizacion de = new Ecualizacion();
     }
     

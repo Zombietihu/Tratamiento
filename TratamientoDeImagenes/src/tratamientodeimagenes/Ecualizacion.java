@@ -8,6 +8,8 @@ package tratamientodeimagenes;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import javafx.scene.control.SplitPane;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.JOptionPane;
@@ -27,10 +29,16 @@ public class Ecualizacion extends JFrame{
      
     JPanel d_leftPanel;
     JPanel d_rightPanel;
-    JPanel histograma ;
+    JPanel histogramaN;
+    JPanel histogramaE;
     JPanel normal;
     JPanel ecualizado;
-     
+    JTabbedPane pestañasI=new JTabbedPane();
+    JTabbedPane pestañasD=new JTabbedPane();
+    Comparacion c = new Comparacion();
+    Comparacion2 c2 = new Comparacion2();
+    
+    Imagen i = new Imagen();
     private int calcularMedia(Color color){      
         int mediaColor;
         mediaColor=(int)((color.getRed()+color.getGreen()+color.getBlue())/3);
@@ -38,7 +46,7 @@ public class Ecualizacion extends JFrame{
         return mediaColor;
     }
     
-    public  Ecualizacion(){
+    public  Ecualizacion() throws IOException{
         setSize(1000,600);
         setTitle("compara");
         setVisible(true);
@@ -92,7 +100,61 @@ public class Ecualizacion extends JFrame{
             JOptionPane.showMessageDialog(null, "No se pudo ecualizar la imagen");
         }
         init();
+        cargaTodo2();
+        cargaTodo();
     }
     public void init(){
+        JSplitPane pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        initLeftPanel();
+        pane.setLeftComponent(pestañasI);
+        initRightPanel();
+        pane.setRightComponent(pestañasD);   //cmbiepestañas    
+        pane.setContinuousLayout(true);
+        pane.setDividerLocation(500);       
+        pane.setEnabled(true);
+        pane.setOneTouchExpandable(true);
+        add(pane);
+
+    }
+    public void initLeftPanel(){
+       d_leftPanel = new JPanel();
+       d_leftPanel.setLayout(null);
+       d_leftPanel.setBackground(java.awt.Color.white);
+       normal = new JPanel();
+       normal.setLayout(null);
+       normal.setBackground(java.awt.Color.white);
+       pestañasI.addTab("ImagenNormal",normal);
+       histogramaN = new JPanel();
+       histogramaN.setLayout(null);
+       histogramaN.setBackground(java.awt.Color.white);
+       pestañasI.addTab("histogramaNormal", histogramaN);
+    }
+    public void initRightPanel(){
+       d_rightPanel = new JPanel();
+       d_rightPanel.setLayout(null);
+       d_rightPanel.setBackground(java.awt.Color.white);
+       pestañasD.addTab("ImagenE", d_rightPanel);
+       histogramaE = new JPanel();
+       histogramaE.setLayout(null);
+       histogramaE.setBackground(java.awt.Color.white);
+       pestañasD.addTab("Histograma", histogramaE);
+      /* binarizar = new JPanel();
+       binarizar.setLayout(null);
+       pestañas.addTab("Binarizar", binarizar);*/
+    }
+    public void cargaTodo2() throws IOException{
+        c2.cargaOriginal();
+        normal.removeAll();
+        normal.add(c2);
+        normal.repaint();
+        c2.histogramaImagen(histogramaN);
+    }
+    public void cargaTodo() throws IOException{
+        
+        c.cargaEcualizada();
+        d_rightPanel.removeAll();
+        d_rightPanel.add(c);
+        d_rightPanel.repaint();
+        c.histogramaImagen(histogramaE);
     }
 }

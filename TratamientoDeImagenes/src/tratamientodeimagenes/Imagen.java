@@ -38,7 +38,7 @@ public class Imagen extends JPanel{
       private long peso;
       private Date dat;
       Histograma h = new Histograma();
-    public Imagen(int alto, int ancho){
+    public void Imagen(int alto, int ancho){
         this.setSize(alto,ancho );
         this.setVisible( true );
         int valor;
