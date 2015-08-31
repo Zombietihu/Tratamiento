@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javafx.scene.control.SplitPane;
+//import javafx.scene.control.SplitPane;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.JOptionPane;
@@ -38,7 +38,7 @@ public class Ecualizacion extends JFrame{
     Comparacion c = new Comparacion();
     Comparacion2 c2 = new Comparacion2();
     
-    Imagen i = new Imagen();
+   // Imagen i = new Imagen();
     private int calcularMedia(Color color){      
         int mediaColor;
         mediaColor=(int)((color.getRed()+color.getGreen()+color.getBlue())/3);
