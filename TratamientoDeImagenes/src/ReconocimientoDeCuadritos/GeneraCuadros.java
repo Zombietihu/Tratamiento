@@ -32,7 +32,7 @@ public class GeneraCuadros {
             }
             
             //para cuadro de 10x10
-            /*
+            
              for( int i = 10; i < 20; i++ ){
                 System.out.println("Entre a 10x10");
                for( int j = 10; j < 20; j++ ){
@@ -41,7 +41,8 @@ public class GeneraCuadros {
                 
                 }
             }
-             */
+             
+            //Para el de 15x15
             for( int i = 25; i < 40; i++ ){
                 
                for( int j = 25; j < 40; j++ ){
@@ -50,6 +51,17 @@ public class GeneraCuadros {
                 
                 }
             } 
+            //Para el de 5x5
+             
+             for( int i = 10; i <15 ; i++ ){
+                System.out.println("Entre a 10x10");
+               for( int j = 30; j <35 ; j++ ){
+                   Color color = new Color(255, 255, 255);
+                   cuadros.setRGB(i, j, color.getRGB());
+                
+                }
+            }
+             
             
             
             File file = new File("CuadroPrueba.jpg");

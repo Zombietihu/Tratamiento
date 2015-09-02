@@ -86,7 +86,13 @@ public class CargarImagen extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	Container f=this.getContentPane();
         if (e.getSource()==mi1) {
-           
+           Frame n = new Frame();
+                try {
+                    n.cargar();
+                } catch (IOException ex) {
+                    Logger.getLogger(CargarImagen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           dispose();
         }
         if (e.getSource()==mi2) {
                 try {

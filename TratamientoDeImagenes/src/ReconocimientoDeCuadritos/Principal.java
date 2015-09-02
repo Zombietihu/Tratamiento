@@ -12,5 +12,6 @@ package ReconocimientoDeCuadritos;
 public class Principal {
     public static void main(String args[]){
         Frame f = new Frame();
+        f.Frame();
     }
 }

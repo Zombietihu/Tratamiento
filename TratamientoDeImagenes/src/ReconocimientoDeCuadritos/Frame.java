@@ -24,7 +24,7 @@ public class Frame extends JFrame{
     JPanel muestraImagen; 
     Analiza ana = new Analiza();
     BufferedImage imagenRegiones;
-    public Frame(){
+    public void Frame(){
         init();
         setSize(500,400);
         setTitle("Identifica Cuadritos");
@@ -54,6 +54,7 @@ public class Frame extends JFrame{
             public void actionPerformed(ActionEvent e){
                 try {
                     cargar();
+                    dispose();
                 } catch (IOException ex) {
                     Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
                 }
