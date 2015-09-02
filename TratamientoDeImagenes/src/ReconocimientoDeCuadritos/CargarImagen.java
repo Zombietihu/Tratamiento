@@ -31,6 +31,7 @@ public class CargarImagen extends JFrame implements ActionListener{
     private JMenu menu1;
     private JMenuItem mi1,mi2,mi3;
     Analiza ana = new Analiza();
+    GeneraCuadros gC;
      BufferedImage bmp2 = null;
     public CargarImagen() throws IOException{
         JMenuBar mb = new JMenuBar();
@@ -95,7 +96,7 @@ public class CargarImagen extends JFrame implements ActionListener{
                 }
         }
         if (e.getSource()==mi3) {
-            
+            gC = new GeneraCuadros();
         }        
     }
  
