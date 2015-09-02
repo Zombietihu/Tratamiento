@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 public class GeneraCuadros {
     BufferedImage cuadros;
     //Falta Hcer Generacion de cuadros y probar 
-    public void GeneraCuadros(){
+    public  GeneraCuadros(){
+        System.out.println("Entre");
         try{
            cuadros = new BufferedImage(50, 50, BufferedImage.TYPE_INT_RGB);
             for( int i = 0; i < 50; i++ ){

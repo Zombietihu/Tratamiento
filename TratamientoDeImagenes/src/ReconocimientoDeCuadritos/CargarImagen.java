@@ -96,6 +96,7 @@ public class CargarImagen extends JFrame implements ActionListener{
                 }
         }
         if (e.getSource()==mi3) {
+            System.out.println("Entra");
             gC = new GeneraCuadros();
         }        
     }
