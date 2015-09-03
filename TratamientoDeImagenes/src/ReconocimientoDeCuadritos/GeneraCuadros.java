@@ -21,7 +21,7 @@ public class GeneraCuadros {
     public  GeneraCuadros(){
         System.out.println("Entre");
         try{
-           cuadros = new BufferedImage(50, 50, BufferedImage.TYPE_INT_RGB);
+           cuadros = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
             for( int i = 0; i < 50; i++ ){
                 
                for( int j = 0; j < 50; j++ ){

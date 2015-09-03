@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ReconocimientoDeCuadritos;
+package Codificacion;
 
+import ReconocimientoDeCuadritos.Analiza;
+import ReconocimientoDeCuadritos.Frame;
+import ReconocimientoDeCuadritos.GeneraCuadros;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,40 +19,44 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.*;
 
 /**
  *
  * @author cuatito
  */
-public class CargarImagen extends JFrame implements ActionListener{
-    
+public class LoadImage extends JFrame implements ActionListener{
+     
     JPanel imagen;
     JScrollPane p = new JScrollPane();
     File path;
     private JMenu menu1;
     private JMenuItem mi1,mi2,mi3;
-    Analiza ana = new Analiza();
-    GeneraCuadros gC;
      BufferedImage bmp2 = null;
-    public CargarImagen() throws IOException{
+    public LoadImage() throws IOException{
         JMenuBar mb = new JMenuBar();
-        Cargar();
         setTitle("compara");
         setVisible(true);
-        add(imagen);
-        setSize(imagen.getSize());
+        
+        setSize(500,400);
         setJMenuBar(mb);
         menu1=new JMenu("Opciones");
         mb.add(menu1);
         mi1=new JMenuItem("Abrir Imagen");
         mi1.addActionListener(this);
         menu1.add(mi1);
-        mi2=new JMenuItem("Analizar Imagen");
+        mi2=new JMenuItem("Comprecion Imagen");
         mi2.addActionListener(this);
         menu1.add(mi2);
-        mi3=new JMenuItem("Generar Imagen");
+        mi3=new JMenuItem("Codigo Imagen");
         mi3.addActionListener(this);
         menu1.add(mi3); 
        
@@ -81,31 +88,25 @@ public class CargarImagen extends JFrame implements ActionListener{
         }
         //Asignamos la imagen cargada a la propiedad imageActual
         bmp2=bmp;
+        
         imagen  = new ImagenPanel(bmp2);
+        add(imagen);
     }
     public void actionPerformed(ActionEvent e) {
     	Container f=this.getContentPane();
         //Damos la accion a abrir imagen del menu bar
         if (e.getSource()==mi1) {
-           Frame n = new Frame();
-                try {
-                    n.cargar();
-                } catch (IOException ex) {
-                    Logger.getLogger(CargarImagen.class.getName()).log(Level.SEVERE, null, ex);
-                }
-           dispose();
+         
+           Cargar();
+           
         }
         //damos accion a Analizar Imagen
         if (e.getSource()==mi2) {
-                try {
-                    ana.Analiza(bmp2);
-                } catch (IOException ex) {
-                    Logger.getLogger(CargarImagen.class.getName()).log(Level.SEVERE, null, ex);
-                }
+              rCodificacion k = new rCodificacion(bmp2);
         }
         //Damos accion al generador de cuadritos (Solo es para el primer caso xD)
         if (e.getSource()==mi3) {
-            gC = new GeneraCuadros();
+            
         }        
     }
  

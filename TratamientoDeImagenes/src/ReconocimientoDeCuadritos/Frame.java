@@ -26,7 +26,7 @@ public class Frame extends JFrame{
     BufferedImage imagenRegiones;
     public void Frame(){
         init();
-        setSize(500,400);
+        setSize(500,200);
         setTitle("Identifica Cuadritos");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,22 +34,8 @@ public class Frame extends JFrame{
     }
     public void init(){
         panel = new JPanel();
-        analiza  = new JButton("Analizar");
-        analiza.setBounds(20,50,150,20);
-        analiza.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-               analizar();
-            }
-        });  
-        genera = new JButton("genera");
-        genera.setBounds(20, 80,150,20);
-        genera.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-               generar();
-            }
-        });  
-        carga = new JButton("Muestra");
-        carga.setBounds(20,110,150,20);
+        carga = new JButton("Selecciona una Imagen");
+        carga.setBounds(20, 80,150,20);
         carga.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 try {
@@ -60,16 +46,14 @@ public class Frame extends JFrame{
                 }
             }
         });  
-        panel.add(analiza);
-        panel.add(genera);
+        //panel.add(analiza);
+        //panel.add(genera);
         panel.add(carga);
         add(panel);
     }
-    public void analizar(){
-        //ana.Analiza();
-    }
+   
     public void cargar() throws IOException{
         CargarImagen c = new CargarImagen();
     }
-    public void generar(){}
+    
 }

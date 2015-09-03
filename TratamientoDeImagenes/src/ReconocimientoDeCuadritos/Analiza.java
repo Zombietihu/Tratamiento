@@ -29,8 +29,10 @@ public class Analiza {
     public void Analiza(BufferedImage imagen) throws IOException{
         bmp = imagen;
         binariza();
-       // File imagenSeleccionada= new File("/home/cuatito/NetBeansProjects/TratamientoDeImagenes/CuadroPrueba.jpg");
-        //File imagenSeleccionada= new File("/home/cuatito/NetBeansProjects/TratamientoDeImagenes/prueba1.png");
+        /*Esto se cambia por la path donde se guarda la imagen
+        En caso se linux es algo semejante
+        En caso de windows es desde C:\\...
+        */
         File imagenSeleccionada= new File("/home/cuatito/NetBeansProjects/TratamientoDeImagenes/Regiones.jpg");
         imagenAnalizada= ImageIO.read(imagenSeleccionada);
         etiqueta();
@@ -67,7 +69,6 @@ public class Analiza {
      private int calcularMedia(Color color){
         int mediaColor;
         mediaColor=(int)((color.getRed()+color.getGreen()+color.getBlue())/3);
-      //  System.out.println(mediaColor);
         return mediaColor;
     }
      public void empiezaBusqueda(){
@@ -115,6 +116,12 @@ public class Analiza {
         evaluaRegion(x0, y0, x1, y1);
      }
      public void evaluaRegion(int x, int y, int ancho, int largo){
+         /*Es la seccion de evaluacion de la region, se compara que toda la region
+         se encuentre la etiqueta blanca  si al finalizar todo fue con etiquetado blanco
+         aunmenta regionesExistentes.
+         Durante el Recorrido se cambia la etiquta blanco a recorrido (R) para 
+         no volver a recorrer la region.
+         */
          boolean a = true;
          for(int i = x; i<ancho; i++){
              for(int j = y; j<largo;j++){
@@ -132,46 +139,35 @@ public class Analiza {
          
      }
      public void llenaArchivo(){
+         /*Esta clase es solo para ver la matriz como queda llenada... 
+         el archivo se encuentra al abrir la carpeta contenedora*/
          FileWriter fichero ;
          PrintWriter pw;
          try{fichero = new FileWriter("archivo.txt"); pw = new PrintWriter(fichero);
          for (int x=0; x < imagenEspejo.length; x++) {
             pw.write("\n");
             pw.write("|");
-            //System.out.print("|");
             for (int y=0; y < imagenEspejo[x].length; y++) {
-           //     System.out.print(imagenEspejo[x][y]);
                 pw.write(imagenEspejo[x][y]);
-             //   if (y!=imagenEspejo[x].length-1) System.out.print("\t");
             }
           pw.write("|");  
-         // System.out.println("|");
          }
            
         
          fichero.close();
          }catch(Exception e){}
-        /* for( int i = 0; i < bmp.getWidth(); i++ ){
-            for( int j = 0; j < bmp.getHeight(); j++ ){
-                if (imagenEspejo[i][j].equals("B")){
-                    
-                }
-            }
-            
-         }*/
      }
      public void etiqueta(){
         /*
             Lo que aremos sera llnear una 
             matriz de tipo String con la inicial del fondo
-            
+            y la inicial de la region
         */
         Color colorp,colorr,colort;
         imagenEspejo=new String[bmp.getWidth()][ bmp.getHeight()];
         for( int i = 0; i < bmp.getWidth(); i++ ){             
-           // System.out.println(colorAuxiliar);
             for( int j = 0; j < bmp.getHeight(); j++ ){
-               //Se inician las reglas 
+               //Se inician las reglas o Algoritmo dado en clase
                //Obtenemos color del píxel actual o sea p y obtenemos su valor
                colorp=new Color(imagenAnalizada.getRGB(i, j));
                int p = calcularMedia(colorp);
@@ -184,7 +180,6 @@ public class Analiza {
                    colort=new Color(imagenAnalizada.getRGB(i, j-1));
                    int t = calcularMedia(colort);
                    if((p==255)&&(r==0)&&(t==0)){
-                       System.out.println("entre");
                        imagenEspejo[i][j]="B";
                    }else{
                        if((p==255)&&(r==255)&&(t==0)){
@@ -205,10 +200,6 @@ public class Analiza {
                                             System.out.println("p= "+p+" r= "+r+" t= "+t);
                                        }
                                    }
-                                  
-                                   /*if((p==255)&&(r!=0)&&(t!=0)&&(r!=t)){
-                                       imagenEspejo[i][j]="B";
-                                   }*/
                                }
                            }
                        }
