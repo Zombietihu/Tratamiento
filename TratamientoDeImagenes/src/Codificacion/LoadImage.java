@@ -45,7 +45,7 @@ public class LoadImage extends JFrame implements ActionListener{
         JMenuBar mb = new JMenuBar();
         setTitle("compara");
         setVisible(true);
-        
+         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,400);
         setJMenuBar(mb);
         menu1=new JMenu("Opciones");
@@ -100,13 +100,13 @@ public class LoadImage extends JFrame implements ActionListener{
            Cargar();
            
         }
-        //damos accion a Analizar Imagen
+        //codifica la imagen
         if (e.getSource()==mi2) {
               rCodificacion k = new rCodificacion(bmp2);
         }
-        //Damos accion al generador de cuadritos (Solo es para el primer caso xD)
+        //muestra la codificacion
         if (e.getSource()==mi3) {
-            
+            MuestraCodigo muestra = new MuestraCodigo();
         }        
     }
  

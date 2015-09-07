@@ -19,7 +19,7 @@ public class GeneraCuadros {
     BufferedImage cuadros;
     //Falta Hcer Generacion de cuadros y probar 
     public  GeneraCuadros(){
-        System.out.println("Entre");
+       // System.out.println("Entre");
         try{
            cuadros = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
             for( int i = 0; i < 50; i++ ){
@@ -36,7 +36,7 @@ public class GeneraCuadros {
              for( int i = 10; i < 20; i++ ){
                 System.out.println("Entre a 10x10");
                for( int j = 10; j < 20; j++ ){
-                   Color color = new Color(255, 255, 255);
+                   Color color = new Color(0, 0, 255);
                    cuadros.setRGB(i, j, color.getRGB());
                 
                 }
@@ -46,17 +46,17 @@ public class GeneraCuadros {
             for( int i = 25; i < 40; i++ ){
                 
                for( int j = 25; j < 40; j++ ){
-                   Color color = new Color(255, 255, 255);
+                   Color color = new Color(255, 0, 0);
                    cuadros.setRGB(i, j, color.getRGB());
                 
                 }
             } 
             //Para el de 5x5
              
-             for( int i = 10; i <15 ; i++ ){
+             for( int i = 9; i <15 ; i++ ){
                 System.out.println("Entre a 10x10");
                for( int j = 30; j <35 ; j++ ){
-                   Color color = new Color(255, 255, 255);
+                   Color color = new Color(0, 255, 0);
                    cuadros.setRGB(i, j, color.getRGB());
                 
                 }

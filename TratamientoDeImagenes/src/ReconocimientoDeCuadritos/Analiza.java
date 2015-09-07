@@ -26,8 +26,10 @@ public class Analiza {
     Color colorAuxiliar;
     String imagenEspejo[][];
     int regionesExistentes = 0;
+    boolean fondo;
     public void Analiza(BufferedImage imagen) throws IOException{
         bmp = imagen;
+        //imagenAnalizada = imagen;
         binariza();
         /*Esto se cambia por la path donde se guarda la imagen
         En caso se linux es algo semejante
@@ -39,22 +41,40 @@ public class Analiza {
         empiezaBusqueda();
         llenaArchivo();
     }
-    //Binarizamos en caso de que no este binarizada
+    //Binarizaba pero ya no y me dio hueva cambiarle el nombre xD ... ahora simplemente hacemos que los 
+    //tonos de colore queden mas compactos n.n
     public void binariza(){
         try{
            cuadritoB = new BufferedImage(bmp.getWidth(), bmp.getHeight(), BufferedImage.TYPE_INT_RGB);
             for( int i = 0; i < bmp.getWidth(); i++ ){
                 
                for( int j = 0; j < bmp.getHeight(); j++ ){
+                  
                    colorAuxiliar=new Color(bmp.getRGB(i, j));
-                   if ( calcularMedia(colorAuxiliar)<120){
+                   if(colorAuxiliar.getRed()>120){
+                       Color color = new Color(255, 0, 0);
+                       cuadritoB.setRGB(i, j, color.getRGB());
+                   }else{
+                       if(colorAuxiliar.getGreen()>120){
+                           Color color = new Color(0, 255, 0);
+                       cuadritoB.setRGB(i, j, color.getRGB());
+                       }else{
+                           if(colorAuxiliar.getBlue()>120){
+                               Color color = new Color(0, 0, 255);
+                       cuadritoB.setRGB(i, j, color.getRGB());
+                           }else{
+                                if ( calcularMedia(colorAuxiliar)<120){
                        Color color = new Color(0, 0, 0);
                        cuadritoB.setRGB(i, j, color.getRGB());
                    }else{
                        Color color = new Color(255, 255, 255);
                        cuadritoB.setRGB(i, j, color.getRGB());
                    }
-              
+                           }
+                       }
+                   }
+                  
+                   
                 
             }
         }
@@ -74,16 +94,26 @@ public class Analiza {
      public void empiezaBusqueda(){
          for(int i=0; i < imagenEspejo.length; i++){
              for(int j=0; j<imagenEspejo[i].length; j++){
-                 if(imagenEspejo[i][j].equals("B")){
-                     obtenCoordenadas(i,j);
+                 if(imagenEspejo[i][j].equals("R")){
+                     obtenCoordenadas(i,j,"R");
                      break;
+                 }else{
+                     if(imagenEspejo[i][j].equals("G")){
+                        obtenCoordenadas(i,j,"G");
+                        break;
+                    }else{
+                      if(imagenEspejo[i][j].equals("B")){
+                        obtenCoordenadas(i,j,"B");
+                        break;
+                      }    
+                    }
                  }
                  
              }
          }
          System.out.println("las Regiones existentes son: "+regionesExistentes);
      }
-     public void obtenCoordenadas(int i,int j){
+     public void obtenCoordenadas(int i,int j, String etq){
          int x0,x1=0,y0,y1=0;
          int largo, ancho;
          x0=i;
@@ -91,7 +121,7 @@ public class Analiza {
          //recorreFiulas
          boolean blanco = true;
         while(blanco){
-            if (imagenEspejo[x0][y0].equals("B")){
+            if (imagenEspejo[x0][y0].equals(etq)){
                 x0++;
             }else{
                 x1=x0;
@@ -102,7 +132,7 @@ public class Analiza {
         x0=i;
         blanco = true;
         while(blanco){
-            if (imagenEspejo[x0][y0].equals("B")){
+            if (imagenEspejo[x0][y0].equals(etq)){
                 y0++;
             }else{
                 y1=y0;
@@ -113,9 +143,9 @@ public class Analiza {
         //obten distancias
         largo = x1-x0;
         ancho = y1-y0;
-        evaluaRegion(x0, y0, x1, y1);
+        evaluaRegion(x0, y0, x1, y1, etq);
      }
-     public void evaluaRegion(int x, int y, int ancho, int largo){
+     public void evaluaRegion(int x, int y, int ancho, int largo, String etq){
          /*Es la seccion de evaluacion de la region, se compara que toda la region
          se encuentre la etiqueta blanca  si al finalizar todo fue con etiquetado blanco
          aunmenta regionesExistentes.
@@ -125,16 +155,17 @@ public class Analiza {
          boolean a = true;
          for(int i = x; i<ancho; i++){
              for(int j = y; j<largo;j++){
-                 if(imagenEspejo[i][j].equals("B")){
-                     imagenEspejo[i][j]="R";
+                 if(imagenEspejo[i][j].equals(etq)){
+                     imagenEspejo[i][j]="V";
                  }else{
-                     imagenEspejo[i][j]="R";
+                     imagenEspejo[i][j]="V";
                      a = false;
                  }
              }
          }
          if (a){
              regionesExistentes++;
+             System.out.println(regionesExistentes);
          }
          
      }
@@ -170,36 +201,37 @@ public class Analiza {
                //Se inician las reglas o Algoritmo dado en clase
                //Obtenemos color del píxel actual o sea p y obtenemos su valor
                colorp=new Color(imagenAnalizada.getRGB(i, j));
-               int p = calcularMedia(colorp);
-               if(p==0){
-                   imagenEspejo[i][j]="N";
+               fondo = (colorp.getBlue()<120)&&(colorp.getRed()<120)&&(colorp.getGreen()<120);
+               //Se asigna fondo
+               if(fondo){
+                   imagenEspejo[i][j]="F";
                }else{
+                   
                    //obtenemos el valor se los siguientes pixeles
                    colorr=new Color(imagenAnalizada.getRGB(i-1, j));
-                   int r = calcularMedia(colorr);
+                   boolean r = (colorr.getBlue()>120)||(colorr.getRed()>120)||(colorr.getGreen()>120);;
                    colort=new Color(imagenAnalizada.getRGB(i, j-1));
-                   int t = calcularMedia(colort);
-                   if((p==255)&&(r==0)&&(t==0)){
-                       imagenEspejo[i][j]="B";
+                   boolean t = (colorp.getBlue()>120)||(colorp.getRed()>120)||(colorp.getGreen()>120);
+                   //Se asigna nueva etiqueta
+                   if((!fondo)&&(r)&&(t)){
+                       String nuevaEtiqueta = tablaEtiquetas(colorp.getRed(),colorp.getGreen(),colorp.getBlue());
+                       imagenEspejo[i][j]=nuevaEtiqueta;
                    }else{
-                       if((p==255)&&(r==255)&&(t==0)){
-                           imagenEspejo[i][j]="B";
+                       if((!fondo)&&(!r)&&(t)){
+                           //asigna etiqueta de r
+                           imagenEspejo[i][j]=imagenEspejo[i-1][j];
                        }else{
-                           if((p==255)&&(r==0)&&(t==255)){
-                               imagenEspejo[i][j]="B";
+                           //asigna etiqueta de t
+                           if((!fondo)&&(r)&&(!t)){
+                               imagenEspejo[i][j]=imagenEspejo[i][j-1];
                            }else{
-                               if((p==255)&&(r==255)&&(t==255)){
-                                   imagenEspejo[i][j]="B";
+                               if((!fondo)&&(!r)&&(!t)&&(mismoColor(colorr,colort))){
+                                   imagenEspejo[i][j]=imagenEspejo[i][j-1];
                                }else{
-                                   if(p>200){
-                                     imagenEspejo[i][j]="B";  
-                                   }else{
-                                       if(p<200){
-                                           imagenEspejo[i][j]="N";
-                                       }else{
-                                            System.out.println("p= "+p+" r= "+r+" t= "+t);
-                                       }
+                                   if((!fondo)&&(!r)&&(!t)&&(!mismoColor(colorr,colort))){
+                                     imagenEspejo[i][j]=imagenEspejo[i-1][j];  
                                    }
+                                   
                                }
                            }
                        }
@@ -208,4 +240,24 @@ public class Analiza {
             }          
         }
      }
+     public String tablaEtiquetas(int R, int G, int B){
+         if(R>120){return "R";}else{if(G>120){return "G";}else{if(B>120){return "B";}}}
+         return "NR";
+     }
+     public void reEtiqueta(){
+     }
+     public boolean mismoColor(Color r, Color t){
+         if((r.getRed()>120)&&(t.getRed()>120)){
+             return true;
+         }else{
+             if((r.getGreen()>120)&&(t.getGreen()>120)){
+                 return true;
+             }else{
+                 if((r.getBlue()>128)&&(t.getBlue()>120)){
+                     return true;
+                 }else{return false;}
+             }
+         }
+     }
+             
 }

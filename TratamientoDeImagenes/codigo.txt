@@ -1,0 +1,23 @@
+
+					CODIFICACION NUEVA
+
+a	0	ca	20	ea	40	ga	60	ia	80	baa	100	bca	120	bea	140	bga	160	bia	180	caa	200	cca	220	cea	240
+b	1	cb	21	eb	41	gb	61	ib	81	bab	101	bcb	121	beb	141	bgb	161	bib	181	cab	201	ccb	221	ceb	241
+c	2	cc	22	ec	42	gc	62	ic	82	bac	102	bcc	122	bec	142	bgc	162	bic	182	cac	202	ccc	222	cec	242
+d	3	cd	23	ed	43	gd	63	id	83	bad	103	bcd	123	bed	143	bgd	163	bid	183	cad	203	ccd	223	ced	243
+e	4	ce	24	ee	44	ge	64	ie	84	bae	104	bce	124	bee	144	bge	164	bie	184	cae	204	cce	224	cee	244
+f	5	cf	25	ef	45	gf	65	if	85	baf	105	bcf	125	bef	145	bgf	165	bif	185	caf	205	ccf	225	cef	245
+g	6	cg	26	eg	46	gg	66	ig	86	bag	106	bcg	126	beg	146	bgg	166	big	186	cag	206	ccg	226	ceg	246
+h	7	ch	27	eh	47	gh	67	ih	87	bah	107	bch	127	beh	147	bgh	167	bih	187	cah	207	cch	227	ceh	247
+i	8	ci	28	ei	48	gi	68	ii	88	bai	108	bci	128	bei	148	bgi	168	bii	188	cai	208	cci	228	cei	248
+j	9	cj	29	ej	49	gj	69	ij	89	baj	109	bcj	129	bej	149	bgj	169	bij	189	caj	209	ccj	229	cej	249
+ba	10	da	30	fa	50	ha	70	ja	90	bba	110	bda	130	bfa	150	bha	170	bja	190	cba	210	cda	230	cfa	250
+bb	11	db	31	fb	51	hb	71	jb	91	bbb	111	bdb	131	bfb	151	bhb	171	bjb	191	cbb	211	cdb	231	cfb	251
+bc	12	dc	32	fc	52	hc	72	jc	92	bbc	112	bdc	132	bfc	152	bhc	172	bjc	192	cbc	212	cdc	232	cfc	252
+bd	13	dd	33	fd	53	hd	73	jd	93	bbd	113	bdd	133	bfd	153	bhd	173	bjd	193	cbd	213	cdd	233	cfd	253
+be	14	de	34	fe	54	he	74	je	94	bbe	114	bde	134	bfe	154	bhe	174	bje	194	cbe	214	cde	234	cfe	254
+bf	15	df	35	ff	55	hf	75	jf	95	bbf	115	bdf	135	bff	155	bhf	175	bjf	195	cbf	215	cdf	235	cff	255
+bg	16	dg	36	fg	56	hg	76	jg	96	bbg	116	bdg	136	bfg	156	bhg	176	bjg	196	cbg	216	cdg	236		
+bh	17	dh	37	fh	57	hh	77	jh	97	bbh	117	bdh	137	bfh	157	bhh	177	bjh	197	cbh	217	cdh	237		
+bi	18	di	38	fi	58	hi	78	ji	98	bbi	118	bdi	138	bfi	158	bhi	178	bji	198	cbi	218	cdi	238		
+bj	19	dj	39	fj	59	hj	79	jj	99	bbj	119	bdj	139	bfj	159	bhj	179	bjj	199	cbj	219	cdj	239		

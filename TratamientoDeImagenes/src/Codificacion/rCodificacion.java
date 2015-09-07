@@ -7,6 +7,7 @@ package Codificacion;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,15 +45,19 @@ public class rCodificacion {
             double L = 0;
             double pxL=0;
             for( int i = 0; i < 256; i++ ){
-                pxL = (prx[0][i])+pxL;
+          
                 if(i<100){
-                    L=pxL*2+L;
+                    L= prx[0][i]*2+L;
                 }else{
-                    L=pxL*3+L;
+                    L= prx[0][i]*3+L;
                 }
                 
             }
-            System.out.println((int)L);
+            JOptionPane.showMessageDialog(null, "Los Resultados son:\n"
+                    + "L = "+L+"\n"
+                    + "Cr = "+8/L+"\n"
+                    + "Ro = "+(1-(1/(8/L)))+".");
+           // System.out.println((float)L);
     
     }
      private int calcularMedia(Color color){      

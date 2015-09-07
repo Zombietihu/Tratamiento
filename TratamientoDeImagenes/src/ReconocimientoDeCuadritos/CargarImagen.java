@@ -38,6 +38,7 @@ public class CargarImagen extends JFrame implements ActionListener{
         Cargar();
         setTitle("compara");
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(imagen);
         setSize(imagen.getSize());
         setJMenuBar(mb);
